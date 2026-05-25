@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.twodust.v2rayN</id>
+  <name>v2rayN</name>
+  <summary>GUI client for Xray and sing-box</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <developer id="com.github.2dust">
+    <name>2dust</name>
+  </developer>
+  <description>
+    <p>Flatpak build of v2rayN with TUN and system-proxy auto-modification disabled.</p>
+  </description>
+  <launchable type="desktop-id">io.github.twodust.v2rayN.desktop</launchable>
+  <url type="homepage">https://github.com/2dust/v2rayN</url>
+</component>

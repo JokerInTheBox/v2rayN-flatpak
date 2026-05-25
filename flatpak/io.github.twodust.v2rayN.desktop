@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=v2rayN
+Comment=v2rayN (Flatpak)
+Exec=v2rayN
+Icon=io.github.twodust.v2rayN
+Terminal=false
+Categories=Network;
+StartupNotify=true
