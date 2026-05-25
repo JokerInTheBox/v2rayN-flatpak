@@ -984,6 +984,11 @@ public class Utils
 
     public static string StartupPath()
     {
+        if (IsFlatpakRuntime())
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "v2rayN");
+        }
+
         if (Environment.GetEnvironmentVariable(Global.LocalAppData) == "1")
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "v2rayN");
@@ -1166,6 +1171,11 @@ public class Utils
     {
         try
         {
+            if (IsFlatpakRuntime())
+            {
+                return true;
+            }
+
             if (IsWindows() || IsMacOS())
             {
                 return false;
@@ -1191,6 +1201,11 @@ public class Utils
             }
 
             if (p.StartsWith("/usr/share/v2rayN", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if (p.StartsWith("/app", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -1274,5 +1289,28 @@ public class Utils
             : Environment.GetEnvironmentVariable("HOME");
     }
 
+    public static bool IsFlatpakRuntime()
+    {
+        try
+        {
+            if (!IsLinux())
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("FLATPAK_ID")))
+            {
+                return true;
+            }
+
+            return File.Exists("/.flatpak-info");
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     #endregion Platform
 }
+

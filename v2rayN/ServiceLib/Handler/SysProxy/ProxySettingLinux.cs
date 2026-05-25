@@ -19,6 +19,12 @@ public static class ProxySettingLinux
 
     private static async Task ExecCmd(List<string> args)
     {
+        if (Utils.IsFlatpakRuntime())
+        {
+            NoticeManager.Instance.SendMessage(ResUI.MsgNotSupport);
+            return;
+        }
+
         var customSystemProxyScriptPath = AppManager.Instance.Config.SystemProxyItem?.CustomSystemProxyScriptPath;
         var fileName = (customSystemProxyScriptPath.IsNotEmpty() && File.Exists(customSystemProxyScriptPath))
             ? customSystemProxyScriptPath

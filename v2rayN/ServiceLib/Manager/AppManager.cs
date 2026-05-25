@@ -66,6 +66,11 @@ public sealed class AppManager
             Environment.SetEnvironmentVariable(Global.LocalAppData, "1", EnvironmentVariableTarget.Process);
         }
 
+        if (Utils.IsFlatpakRuntime())
+        {
+            Environment.SetEnvironmentVariable(Global.LocalAppData, "1", EnvironmentVariableTarget.Process);
+        }
+
         Logging.Setup();
         var config = ConfigHandler.LoadConfig();
         if (config == null)
@@ -73,6 +78,10 @@ public sealed class AppManager
             return false;
         }
         _config = config;
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.TunModeItem.EnableTun = false;
+        }
         Thread.CurrentThread.CurrentUICulture = new(_config.UiItem.CurrentLanguage);
 
         //Under Win10

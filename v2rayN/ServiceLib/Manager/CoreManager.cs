@@ -228,7 +228,8 @@ public class CoreManager
 
         try
         {
-            if (mayNeedSudo
+            if (!Utils.IsFlatpakRuntime()
+                && mayNeedSudo
                 && _config.TunModeItem.EnableTun
                 && (coreInfo.CoreType is ECoreType.sing_box or ECoreType.mihomo)
                 && Utils.IsNonWindows())

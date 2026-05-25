@@ -6,6 +6,11 @@ public static class SysProxyHandler
 
     public static async Task<bool> UpdateSysProxy(Config config, bool forceDisable)
     {
+        if (Utils.IsFlatpakRuntime())
+        {
+            return true;
+        }
+
         var type = config.SystemProxyItem.SysProxyType;
 
         if (forceDisable && type != ESysProxyType.Unchanged)

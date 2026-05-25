@@ -229,6 +229,11 @@ public class OptionSettingViewModel : MyReactiveObject
         TunIcmpRouting = _config.TunModeItem.IcmpRouting;
         TunEnableLegacyProtect = _config.TunModeItem.EnableLegacyProtect;
 
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.TunModeItem.EnableTun = false;
+        }
+
         #endregion Tun mode
 
         await InitCoreType();
@@ -390,6 +395,11 @@ public class OptionSettingViewModel : MyReactiveObject
         _config.SystemProxyItem.CustomSystemProxyScriptPath = CustomSystemProxyScriptPath;
 
         //tun mode
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.TunModeItem.EnableTun = false;
+        }
+
         _config.TunModeItem.AutoRoute = TunAutoRoute;
         _config.TunModeItem.StrictRoute = TunStrictRoute;
         _config.TunModeItem.Stack = TunStack;

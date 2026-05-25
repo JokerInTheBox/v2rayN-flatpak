@@ -101,7 +101,12 @@ public class StatusBarViewModel : MyReactiveObject
         BlSystemProxyPacVisible = Utils.IsWindows();
         BlIsNonWindows = Utils.IsNonWindows();
 
-        if (_config.TunModeItem.EnableTun && AllowEnableTun())
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.TunModeItem.EnableTun = false;
+            EnableTun = false;
+        }
+        else if (_config.TunModeItem.EnableTun && AllowEnableTun())
         {
             EnableTun = true;
         }
@@ -380,6 +385,14 @@ public class StatusBarViewModel : MyReactiveObject
 
     private async Task SetListenerType(ESysProxyType type)
     {
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.SystemProxyItem.SysProxyType = ESysProxyType.Unchanged;
+            SystemProxySelected = (int)ESysProxyType.Unchanged;
+            NoticeManager.Instance.SendMessageEx(ResUI.MsgNotSupport);
+            return;
+        }
+
         if (_config.SystemProxyItem.SysProxyType == type)
         {
             return;
@@ -464,6 +477,14 @@ public class StatusBarViewModel : MyReactiveObject
 
     private async Task DoEnableTun(bool c)
     {
+        if (Utils.IsFlatpakRuntime())
+        {
+            _config.TunModeItem.EnableTun = false;
+            EnableTun = false;
+            NoticeManager.Instance.SendMessageEx(ResUI.MsgNotSupport);
+            return;
+        }
+
         if (_config.TunModeItem.EnableTun == EnableTun)
         {
             return;
@@ -497,6 +518,11 @@ public class StatusBarViewModel : MyReactiveObject
 
     private bool AllowEnableTun()
     {
+        if (Utils.IsFlatpakRuntime())
+        {
+            return false;
+        }
+
         if (Utils.IsWindows())
         {
             return Utils.IsAdministrator();
