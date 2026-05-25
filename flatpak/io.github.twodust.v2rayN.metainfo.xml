@@ -13,4 +13,11 @@
   </description>
   <launchable type="desktop-id">io.github.twodust.v2rayN.desktop</launchable>
   <url type="homepage">https://github.com/2dust/v2rayN</url>
+  <releases>
+    <release version="7.22.3-flatpak" date="2026-05-26">
+      <description>
+        <p>Initial Flatpak packaging release.</p>
+      </description>
+    </release>
+  </releases>
 </component>
