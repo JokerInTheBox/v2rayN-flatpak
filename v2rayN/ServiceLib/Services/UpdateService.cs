@@ -117,6 +117,11 @@ public class UpdateService(Config config, Func<bool, string, Task> updateFunc)
         var msgs = new List<string>();
         foreach (var type in CoreInfoManager.Instance.GetCheckUpdateCoreTypes())
         {
+            if (!(_config.CheckUpdateItem.SelectedCoreTypes?.Contains(type.ToString()) ?? true))
+            {
+                continue;
+            }
+
             var result = await CheckHasUpdateOnly(type, preRelease);
             if (result.Success && result.Version != null)
             {
@@ -337,6 +342,7 @@ public class UpdateService(Config config, Func<bool, string, Task> updateFunc)
             {
                 Architecture.Arm64 => coreInfo?.DownloadUrlLinuxArm64,
                 Architecture.RiscV64 => coreInfo?.DownloadUrlLinuxRiscV64,
+                Architecture.LoongArch64 => coreInfo?.DownloadUrlLinuxLoong64,
                 Architecture.X64 => coreInfo?.DownloadUrlLinux64,
                 _ => null,
             };

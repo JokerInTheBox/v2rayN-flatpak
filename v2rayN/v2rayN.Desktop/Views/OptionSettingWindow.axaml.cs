@@ -60,30 +60,30 @@ public partial class OptionSettingWindow : WindowBase<OptionSettingViewModel>
 
         this.WhenActivated(disposables =>
         {
-            this.Bind(ViewModel, vm => vm.localPort, v => v.txtlocalPort.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.LocalPort, v => v.txtlocalPort.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.SecondLocalPortEnabled, v => v.togSecondLocalPortEnabled.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.udpEnabled, v => v.togudpEnabled.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.sniffingEnabled, v => v.togsniffingEnabled.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.routeOnly, v => v.togrouteOnly.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.allowLANConn, v => v.togAllowLANConn.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.newPort4LAN, v => v.togNewPort4LAN.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.newPort4LAN, v => v.txtuser.IsEnabled).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.newPort4LAN, v => v.txtpass.IsEnabled).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.user, v => v.txtuser.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.pass, v => v.txtpass.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.muxEnabled, v => v.togmuxEnabled.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.logEnabled, v => v.toglogEnabled.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.loglevel, v => v.cmbloglevel.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.defAllowInsecure, v => v.togdefAllowInsecure.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.defFingerprint, v => v.cmbdefFingerprint.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.defUserAgent, v => v.cmbdefUserAgent.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.bindInterface, v => v.txtbindInterface.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.sendThrough, v => v.txtsendThrough.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.mux4SboxProtocol, v => v.cmbmux4SboxProtocol.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.enableCacheFile4Sbox, v => v.togenableCacheFile4Sbox.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.hyUpMbps, v => v.txtUpMbps.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.hyDownMbps, v => v.txtDownMbps.Text).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.enableFragment, v => v.togenableFragment.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.UdpEnabled, v => v.togudpEnabled.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.SniffingEnabled, v => v.togsniffingEnabled.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.RouteOnly, v => v.togrouteOnly.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.AllowLANConn, v => v.togAllowLANConn.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.NewPort4LAN, v => v.togNewPort4LAN.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.NewPort4LAN, v => v.txtuser.IsEnabled).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.NewPort4LAN, v => v.txtpass.IsEnabled).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.User, v => v.txtuser.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.Pass, v => v.txtpass.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.MuxEnabled, v => v.togmuxEnabled.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.LogEnabled, v => v.toglogEnabled.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.Loglevel, v => v.cmbloglevel.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.DefAllowInsecure, v => v.togdefAllowInsecure.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.DefFingerprint, v => v.cmbdefFingerprint.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.DefUserAgent, v => v.cmbdefUserAgent.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.BindInterface, v => v.txtbindInterface.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.SendThrough, v => v.txtsendThrough.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.Mux4SboxProtocol, v => v.cmbmux4SboxProtocol.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.EnableCacheFile4Sbox, v => v.togenableCacheFile4Sbox.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.HyUpMbps, v => v.txtUpMbps.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.HyDownMbps, v => v.txtDownMbps.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.EnableFragment, v => v.togenableFragment.IsChecked).DisposeWith(disposables);
 
             this.Bind(ViewModel, vm => vm.AutoRun, v => v.togAutoRun.IsChecked).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.EnableStatistics, v => v.togEnableStatistics.IsChecked).DisposeWith(disposables);
@@ -104,14 +104,14 @@ public partial class OptionSettingWindow : WindowBase<OptionSettingViewModel>
             this.Bind(ViewModel, vm => vm.SubConvertUrl, v => v.cmbSubConvertUrl.Text).DisposeWith(disposables);
             this.Bind<OptionSettingViewModel, OptionSettingWindow, int, int>(ViewModel,
                 vm => vm.MainGirdOrientation, view => view.cmbMainGirdOrientation.SelectedIndex).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.GeoFileSourceUrl, v => v.cmbGetFilesSourceUrl.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.SrsFileSourceUrl, v => v.cmbSrsFilesSourceUrl.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.RoutingRulesSourceUrl, v => v.cmbRoutingRulesSourceUrl.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.GeoFileSourceUrl, v => v.cmbGetFilesSourceUrl.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.SrsFileSourceUrl, v => v.cmbSrsFilesSourceUrl.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.RoutingRulesSourceUrl, v => v.cmbRoutingRulesSourceUrl.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.IPAPIUrl, v => v.cmbIPAPIUrl.Text).DisposeWith(disposables);
 
-            this.Bind(ViewModel, vm => vm.notProxyLocalAddress, v => v.tognotProxyLocalAddress.IsChecked).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.systemProxyAdvancedProtocol, v => v.cmbsystemProxyAdvancedProtocol.SelectedValue).DisposeWith(disposables);
-            this.Bind(ViewModel, vm => vm.systemProxyExceptions, v => v.txtsystemProxyExceptions.Text).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.NotProxyLocalAddress, v => v.tognotProxyLocalAddress.IsChecked).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.SystemProxyAdvancedProtocol, v => v.cmbsystemProxyAdvancedProtocol.SelectedValue).DisposeWith(disposables);
+            this.Bind(ViewModel, vm => vm.SystemProxyExceptions, v => v.txtsystemProxyExceptions.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.CustomSystemProxyPacPath, v => v.txtCustomSystemProxyPacPath.Text).DisposeWith(disposables);
             this.Bind(ViewModel, vm => vm.CustomSystemProxyScriptPath, v => v.txtCustomSystemProxyScriptPath.Text).DisposeWith(disposables);
 
@@ -161,29 +161,18 @@ public partial class OptionSettingWindow : WindowBase<OptionSettingViewModel>
 
     private async Task<List<string>> GetFonts()
     {
+        await Task.CompletedTask;
+
         var lstFonts = new List<string>();
         try
         {
-            if (Utils.IsWindows())
-            {
-                return lstFonts;
-            }
-            else if (Utils.IsNonWindows())
-            {
-                var result = await Utils.GetLinuxFontFamily("zh");
-                if (result.IsNullOrEmpty())
-                {
-                    return lstFonts;
-                }
-
-                var lst = result.Split(Environment.NewLine)
-                    .Where(t => t.IsNotEmpty())
-                    .ToList()
-                    .Select(t => t.Split(",").FirstOrDefault() ?? "")
-                    .OrderBy(t => t)
-                    .ToList();
-                return lst;
-            }
+            var lst = Avalonia.Media.FontManager.Current.SystemFonts
+                .Select(t => t.Name)
+                .Where(t => t.IsNotEmpty())
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(t => t)
+                .ToList();
+            return lst;
         }
         catch (Exception ex)
         {
@@ -196,7 +185,7 @@ public partial class OptionSettingWindow : WindowBase<OptionSettingViewModel>
     {
         if (ViewModel != null)
         {
-            ViewModel.destOverride = clbdestOverride.SelectedItems.Cast<string>().ToList();
+            ViewModel.DestOverride = clbdestOverride.SelectedItems.Cast<string>().ToList();
         }
     }
 

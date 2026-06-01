@@ -55,7 +55,7 @@ public class Global
     public const string DnsOutboundTag = "dns";
     public const string DnsTag = "dns-module";
     public const string DirectDnsTag = "direct-dns";
-    public const string BalancerTagSuffix = "-round";
+    public const string BalancerTagSuffix = "-balancer";
     public const string StreamSecurity = "tls";
     public const string StreamSecurityReality = "reality";
     public const string Loopback = "127.0.0.1";
@@ -149,6 +149,9 @@ public class Global
     public static readonly List<string> SpeedTestUrls =
     [
         @"https://cachefly.cachefly.net/50mb.test",
+        @"https://cachefly.cachefly.net/100mb.test",
+        @"https://cachefly.cachefly.net/1mb.test",
+        @"https://cachefly.cachefly.net/10mb.test",
         @"https://speed.cloudflare.com/__down?bytes=10000000",
         @"https://speed.cloudflare.com/__down?bytes=50000000",
         @"https://speed.cloudflare.com/__down?bytes=99999999",
@@ -157,6 +160,8 @@ public class Global
     public static readonly List<string> SpeedPingTestUrls =
     [
         @"https://www.google.com/generate_204",
+        @"https://www.youtube.com/generate_204",
+        @"https://www.googlevideo.com/generate_204",
         @"https://www.gstatic.com/generate_204",
         @"https://www.apple.com/library/test/success.html",
         @"http://www.msftconnecttest.com/connecttest.txt"
@@ -680,15 +685,15 @@ public class Global
         { "one.one.one.one", ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"] },
         { "1dot1dot1dot1.cloudflare-dns.com", ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"] },
         { "cloudflare-dns.com", ["104.16.249.249", "104.16.248.249", "2606:4700::6810:f8f9", "2606:4700::6810:f9f9"] },
-        { "dns.cloudflare.com", ["104.16.132.229", "104.16.133.229", "2606:4700::6810:84e5", "2606:4700::6810:85e5"] },
+        { "dns.cloudflare.com", ["162.159.61.8", "172.64.41.8", "2a06:98c1:52::8", "2803:f800:53::8"] },
         { "dot.pub", ["1.12.12.12", "120.53.53.53"] },
         { "doh.pub", ["1.12.12.12", "120.53.53.53"] },
         { "dns.quad9.net", ["9.9.9.9", "149.112.112.112", "2620:fe::fe", "2620:fe::9"] },
         { "dns.yandex.net", ["77.88.8.8", "77.88.8.1", "2a02:6b8::feed:0ff", "2a02:6b8:0:1::feed:0ff"] },
-        { "dns.sb", ["185.222.222.222", "2a09::"] },
+        { "dns.sb", ["45.11.45.11", "185.222.222.222", "2a09::", "2a11::"] },
         { "dns.umbrella.com", ["208.67.220.220", "208.67.222.222", "2620:119:35::35", "2620:119:53::53"] },
         { "dns.sse.cisco.com", ["208.67.220.220", "208.67.222.222", "2620:119:35::35", "2620:119:53::53"] },
-        { "engage.cloudflareclient.com", ["162.159.192.1"] }
+        { "engage.cloudflareclient.com", ["162.159.192.1", "2606:4700:d0::a29f:c001"] }
     };
 
     public static readonly List<string> ExpectedIPs =
