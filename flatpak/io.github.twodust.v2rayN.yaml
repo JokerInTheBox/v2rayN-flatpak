@@ -22,6 +22,8 @@ finish-args:
   - --device=dri
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=com.canonical.AppMenu.Registrar
+  - --filesystem=xdg-desktop
   - --filesystem=xdg-download
   - --env=V2RAYN_LOCAL_APPLICATION_DATA_V2=1
 

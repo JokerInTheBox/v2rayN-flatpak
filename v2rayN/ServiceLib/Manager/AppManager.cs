@@ -66,11 +66,6 @@ public sealed class AppManager
             Environment.SetEnvironmentVariable(Global.LocalAppData, "1", EnvironmentVariableTarget.Process);
         }
 
-        if (Utils.IsFlatpakRuntime())
-        {
-            Environment.SetEnvironmentVariable(Global.LocalAppData, "1", EnvironmentVariableTarget.Process);
-        }
-
         Logging.Setup();
         var config = ConfigHandler.LoadConfig();
         if (config == null)
@@ -78,10 +73,6 @@ public sealed class AppManager
             return false;
         }
         _config = config;
-        if (Utils.IsFlatpakRuntime())
-        {
-            _config.TunModeItem.EnableTun = false;
-        }
         Thread.CurrentThread.CurrentUICulture = new(_config.UiItem.CurrentLanguage);
 
         //Under Win10
@@ -142,6 +133,7 @@ public sealed class AppManager
             await StatisticsManager.Instance.SaveTo();
             await CoreManager.Instance.CoreStop();
             StatisticsManager.Instance.Close();
+            CleanupFlatpakProxyDesktopShortcut(); //Flatpak
 
             Logging.SaveLog("AppExitAsync End");
         }
@@ -158,6 +150,41 @@ public sealed class AppManager
     public void Shutdown(bool byUser)
     {
         AppEvents.ShutdownRequested.Publish(byUser);
+    }
+
+    private static void CleanupFlatpakProxyDesktopShortcut() //Flatpak
+    {
+        try
+        {
+            if (!Utils.IsLinux())
+            {
+                return;
+            }
+
+            var isFlatpak = !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("FLATPAK_ID"))
+                            || File.Exists("/.flatpak-info");
+            if (!isFlatpak)
+            {
+                return;
+            }
+
+            var desktopDir = Environment.GetEnvironmentVariable("XDG_DESKTOP_DIR");
+            if (desktopDir.IsNullOrEmpty())
+            {
+                desktopDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Desktop");
+            }
+
+            var desktopFile = Path.Combine(desktopDir, "v2rayN_Proxy.desktop");
+            if (File.Exists(desktopFile))
+            {
+                File.Delete(desktopFile);
+                Logging.SaveLog($"Removed desktop shortcut: {desktopFile}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Logging.SaveLog("CleanupFlatpakProxyDesktopShortcut", ex);
+        }
     }
 
     public async Task RebootAsAdmin()

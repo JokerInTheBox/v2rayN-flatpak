@@ -76,12 +76,18 @@ public sealed class CoreInfoManager
     {
         return type switch
         {
-            ECoreType.v2rayN => !Utils.IsPackagedInstall() && !Utils.IsFlatpakRuntime(),
+            ECoreType.v2rayN => !Utils.IsPackagedInstall() && !IsFlatpakRuntime(), //Flatpak
             ECoreType.Xray => true,
             ECoreType.mihomo => true,
             ECoreType.sing_box => true,
             _ => false,
         };
+    }
+
+    private static bool IsFlatpakRuntime() //Flatpak
+    {
+        return !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("FLATPAK_ID"))
+               || File.Exists("/.flatpak-info");
     }
 
     public bool GetCheckPreRelease(ECoreType type, bool preRelease)

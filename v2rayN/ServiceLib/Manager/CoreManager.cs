@@ -28,7 +28,14 @@ public class CoreManager
             var toPath = Utils.GetBinPath("");
             if (fromPath != toPath)
             {
-                FileUtils.CopyDirectory(fromPath, toPath, true, false);
+                if (Directory.Exists(fromPath)) //Flatpak
+                {
+                    FileUtils.CopyDirectory(fromPath, toPath, true, false);
+                }
+                else //Flatpak
+                {
+                    Logging.SaveLog($"Skip bin bootstrap copy, source does not exist: {fromPath}");
+                }
             }
         }
 
@@ -228,8 +235,7 @@ public class CoreManager
 
         try
         {
-            if (!Utils.IsFlatpakRuntime()
-                && mayNeedSudo
+            if (mayNeedSudo
                 && _config.TunModeItem.EnableTun
                 && (coreInfo.CoreType is ECoreType.sing_box or ECoreType.mihomo)
                 && Utils.IsNonWindows())
